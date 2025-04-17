@@ -1,28 +1,32 @@
-@let err = todosErr$ | async; @let todos = todos$ | async;
+@let todos = store.todos();
 
 <main class="content">
   <section class="todolist">
-    @if (err) {
+    <!-- @if (err) {
     <p>Hello - {{ err | json }}</p>
-    }
+    } -->
     <header class="todolist__header">todo list</header>
+
     <input
       class="todolist__input"
       placeholder="input your todo here..."
       (keyup.enter)="addTodo()"
-      [(ngModel)]="todo.title"
+      [(ngModel)]="title"
     />
     @if (todos) {
     <ul id="todolist_containter">
       @for (todo of todos; track $index) {
-      <app-todo-item
+      <!-- <app-todo-item
         [todo]="todo"
         (idemiter)="deleteTodo($event)"
-      ></app-todo-item>
+      ></app-todo-item> -->
+      <app-todo-item [todo]="todo" />
       }
     </ul>
     }
 
-    <button class="req_btn" (click)="sendNewRequest()">Req</button>
+    <!-- <button class="req_btn" (click)="sendNewRequest()">Req</button> -->
   </section>
 </main>
+
+<!-- {{ store.todos() | json }} -->

@@ -1,6 +1,6 @@
 import { Todo } from './todo.model';
 
-export const todos: Todo[] = [
+export const mockTodos: Todo[] = [
   {
     userId: 1,
     id: 1,
