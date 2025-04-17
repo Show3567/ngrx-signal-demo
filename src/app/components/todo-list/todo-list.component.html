@@ -1,0 +1,28 @@
+@let err = todosErr$ | async; @let todos = todos$ | async;
+
+<main class="content">
+  <section class="todolist">
+    @if (err) {
+    <p>Hello - {{ err | json }}</p>
+    }
+    <header class="todolist__header">todo list</header>
+    <input
+      class="todolist__input"
+      placeholder="input your todo here..."
+      (keyup.enter)="addTodo()"
+      [(ngModel)]="todo.title"
+    />
+    @if (todos) {
+    <ul id="todolist_containter">
+      @for (todo of todos; track $index) {
+      <app-todo-item
+        [todo]="todo"
+        (idemiter)="deleteTodo($event)"
+      ></app-todo-item>
+      }
+    </ul>
+    }
+
+    <button class="req_btn" (click)="sendNewRequest()">Req</button>
+  </section>
+</main>
