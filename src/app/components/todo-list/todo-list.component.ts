@@ -1,11 +1,4 @@
-import {
-  Component,
-  computed,
-  inject,
-  model,
-  OnInit,
-  signal,
-} from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { TodoItemComponent } from '../todo-item/todo-item.component';
