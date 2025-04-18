@@ -1,4 +1,9 @@
 <li>
-  <span>{{ todo.id }} - {{ todo.title }}</span>
+  <span
+    [ngStyle]="{ 'text-decoration': todo.completed ? 'line-through' : '' }"
+    (click)="updateComplete()"
+  >
+    {{ todo.id }} - {{ todo.title }}
+  </span>
   <button (click)="getId()">X</button>
 </li>

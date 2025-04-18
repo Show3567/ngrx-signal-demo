@@ -12,7 +12,7 @@ async function sleep(ms: number) {
 })
 export class TodoService {
   private http = inject(HttpClient);
-  private url = 'https://jsonplaceholder.typicode.com/todos';
+  url = 'https://jsonplaceholder.typicode.com/todos';
 
   async getTodos() {
     await sleep(1000);
@@ -24,5 +24,8 @@ export class TodoService {
   }
   addTodo(todo: Partial<Todo>) {
     return this.http.post(this.url, todo);
+  }
+  deleteTodo(id: number) {
+    return this.http.delete([this.url, id].join('/'));
   }
 }

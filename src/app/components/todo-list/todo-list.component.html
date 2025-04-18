@@ -1,10 +1,7 @@
-@let todos = store.todos();
+@let todos = store.filteredTodos();
 
 <main class="content">
   <section class="todolist">
-    <!-- @if (err) {
-    <p>Hello - {{ err | json }}</p>
-    } -->
     <header class="todolist__header">todo list</header>
 
     <input
@@ -13,20 +10,23 @@
       (keyup.enter)="addTodo()"
       [(ngModel)]="title"
     />
-    @if (todos) {
+    @if (!store.loading()) {
     <ul id="todolist_containter">
       @for (todo of todos; track $index) {
-      <!-- <app-todo-item
+      <app-todo-item
         [todo]="todo"
         (idemiter)="deleteTodo($event)"
-      ></app-todo-item> -->
-      <app-todo-item [todo]="todo" />
+        (toggleComplete)="updateComplete($event)"
+      />
       }
     </ul>
+    } @else {
+    <h3>Loading...</h3>
     }
-
-    <!-- <button class="req_btn" (click)="sendNewRequest()">Req</button> -->
+    <div>
+      <button (click)="filterTodo('all')">all</button>
+      <button (click)="filterTodo('pending')">pending</button>
+      <button (click)="filterTodo('completed')">completed</button>
+    </div>
   </section>
 </main>
-
-<!-- {{ store.todos() | json }} -->

@@ -9,7 +9,8 @@ import {
 import { FormsModule } from '@angular/forms';
 
 import { TodoItemComponent } from '../todo-item/todo-item.component';
-import { TodoStore } from '../../store/todo.store';
+import { TodoFilter, TodoStore } from '../../store/todo.store';
+import { Todo } from '../../model/todo.model';
 
 @Component({
   selector: 'app-todo-list',
@@ -29,11 +30,19 @@ export class TodoListComponent implements OnInit {
   ngOnInit(): void {
     this.store.loadTodosOnLine();
   }
-
-  async loadTodos() {
-    return await this.store.loadAll();
-  }
+  // async loadTodos() {
+  //   return await this.store.loadAll();
+  // }
   addTodo() {
     this.store.addTodo(this.newTodo());
+  }
+  deleteTodo(id: number) {
+    this.store.deleteTodo(id);
+  }
+  updateComplete(todo: Todo) {
+    this.store.toggleComplete(todo);
+  }
+  filterTodo(filter: TodoFilter) {
+    this.store.selectTodos(filter);
   }
 }
